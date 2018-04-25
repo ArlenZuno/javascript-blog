@@ -34,7 +34,7 @@ app.post("/blog", (req, res) => {
   // Push the new blog post in blog array
   let blogsData = fs.readFileSync("blog-data.json");
   let blogs = JSON.parse(blogsData);
-  
+
   let blog = {
     id: `blog-title-${blogs.length + 1}`,
     title: req.body.title,
@@ -42,10 +42,10 @@ app.post("/blog", (req, res) => {
     summary: req.body.summary,
     content: req.body.content,
     created: new Date()
-  }
+  };
 
-  blogs.push(blog)
-  fs.writeFileSync('blog-data.json', JSON.stringify(blogs))
+  blogs.push(blog);
+  fs.writeFileSync("blog-data.json", JSON.stringify(blogs));
 
   res.render("pages/blog", { blogs });
 });
@@ -55,6 +55,8 @@ app.get("/addpost", (req, res) => {
 });
 
 app.delete("/blog/:blogid", (req, res) => {
+  let blogsData = fs.readFileSync("blog-data.json");
+  let blogs = JSON.parse(blogsData);
   let blogid = req.params.blogid;
 
   for (let i = 0; i < blogs.length; i++) {
@@ -63,6 +65,7 @@ app.delete("/blog/:blogid", (req, res) => {
       break;
     }
   }
+  fs.writeFileSync('blog-data.json', JSON.stringify(blogs))
   res.render("pages/blog", { blogs });
 });
 
