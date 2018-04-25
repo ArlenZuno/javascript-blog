@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const port = process.argv[2] || 8080;
 const bodyParser = require("body-parser");
+const fs = require('fs')
 
 let blogs = [
   {
@@ -21,6 +22,12 @@ let blogs = [
     created: "February 6, 2018"
   }
 ];
+
+let blogsJson = JSON.stringify(blogs)
+
+fs.writeFile('blog-data.json', blogsJson, (err) => {
+    console.log(err)
+})
 
 app.set("view engine", "ejs");
 

@@ -2,49 +2,52 @@
 <html lang="en">
 
 <head>
-  <title></title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="css/style.css" rel="stylesheet">
-  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
-  <script>
-    $(function () {
-      // Delete a post using jQuery
-      $('#deletePostButton').click(function (e) {
-        e.preventDefault()
-        let blogid = $('#deletePost').val()
-        let url = `/blog/${blogid}`
-        //use an ajax call to delete the post
-        $.ajax({
-          url: url,
-          type: 'DELETE',
-          success: function (result) {
-          }
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            // Delete a post using jQuery
+            $('#deletePostButton').click(function (e) {
+                e.preventDefault()
+                let blogid = $('#deletePost').val()
+                let url = `/blog/${blogid}`
+                //use an ajax call to delete the post
+                $.ajax({
+                    url: url,
+                    type: 'DELETE',
+                    success: function (result) {
+                        // print the updated list of blog posts
+                        location.href = '/blog'
+                    }
+                })
+            })
         })
-      })
-    })
-  </script>
+
+    </script>
 </head>
 
 <body>
-  <h1>This is the blog page</h1>
-  <% for (let i=0; i<blogs.length; i++) { %>
-    <p>
-      <%= blogs[i].title %>
-        <br>
-        <%= blogs[i].summary %>
-          <br>
-          <a href="blog/<%=blogs[i].id%>">Read More</a>
-          <% } %>
+    <h1>This is the blog page</h1>
+    <% for (let i=0; i<blogs.length; i++) { %>
+        <p>
+            <%= blogs[i].title %>
+                <br>
+                <%= blogs[i].summary %>
+                    <br>
+                    <a href="blog/<%=blogs[i].id%>">Read More</a>
+                    <% } %>
 
-            <h2>Delete Post</h2>
-            <form>
-              Post to be deleted:
-              <input type="text" id="deletePost" />
-              <br />
-              <button type="submit" id="deletePostButton">Submit</button>
-            </form>
+                        <h2>Delete Post</h2>
+                        <form>
+                            Post to be deleted:
+                            <input type="text" id="deletePost" />
+                            <br />
+                            <button type="submit" id="deletePostButton">Submit</button>
+                        </form>
 </body>
 
 </html>
