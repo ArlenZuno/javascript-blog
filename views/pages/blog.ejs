@@ -10,12 +10,14 @@
         crossorigin="anonymous"></script>
     <script>
         $(function () {
-            // Delete a user using jQuery
+            // Delete a post using jQuery
             $('#deletePostButton').click(function (e) {
                 e.preventDefault()
-                //use an ajax call to delete the user
+                let blogid = $('#deletePost').val()
+                let url = `/blog/${blogid}`
+                //use an ajax call to delete the post
                 $.ajax({
-                    url: `/blog/${$('#deletePost').val()}`,
+                    url: url,
                     type: 'DELETE',
                     success: function (result) {
                         // print the updated list of blog posts
@@ -44,7 +46,7 @@
                             Post to be deleted:
                             <input type="text" id="deletePost" />
                             <br />
-                            <button type="button" id="deletePostButton">Submit</button>
+                            <button type="submit" id="deletePostButton">Submit</button>
                         </form>
 </body>
 

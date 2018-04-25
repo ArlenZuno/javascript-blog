@@ -30,7 +30,7 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get("/blog", (req, res) => {
-  res.render("pages/blog", { blogs: blogs });
+  res.render("pages/blog", {blogs});
 });
 
 app.get("/blog/:blogid", (req, res) => {
@@ -55,7 +55,7 @@ app.post("/blog", (req, res) => {
     content: req.body.content,
     created: new Date()
   });
-  res.render("pages/blog", { blogs: blogs });
+  res.render("pages/blog", {blogs});
 });
 
 app.get("/addpost", (req, res) => {
@@ -67,11 +67,11 @@ app.delete("/blog/:blogid", (req, res) => {
 
   for (let i = 0; i < blogs.length; i++) {
     if (blogid === blogs[i].id) {
-        blogs.slice(i, 1)
+        blogs.splice(i, 1)
         break
     }
   }
-  res.render('pages/blog', {blogs: blogs})
+  res.render('pages/blog', {blogs})
 });
 
 app.listen(port, () => {
