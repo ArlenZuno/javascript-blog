@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const port = process.argv[2] || 8080;
+const bodyParser = require('body-parser')
 
 let blogs = [
   {
@@ -43,6 +44,10 @@ app.get("/blog/:blogid", (req, res) => {
 app.post("/blog", (req, res) => {
   res.send("Creating a new post");
 });
+
+app.post ('/addpost', (req, res) => {
+    res.render('pages/addPost')
+})
 
 app.delete("/blog/:blogid", (req, res) => {
   res.send("Deleting blog post");
