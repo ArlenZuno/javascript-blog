@@ -7,11 +7,10 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
-    <h1>This is the blog page</h1>
-    <% for (let i=0; i<blogs.length; i++) { %>
-        <p> <%= blogs[i].title %> <br> <%= blogs[i].summary %>
-        <br>
-        <a href="blog/<%=blogs[i].id%>">Read More</a>
-    <% } %>
+    <h1><%= blog.title %></h1>
+    <p> <%= blog.author%> <br>
+    <%= blog.created %> <br>
+    <%= blog.content %>
+    </p>
     </body>
 </html>
